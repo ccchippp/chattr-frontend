@@ -4,13 +4,14 @@ import './Posts.css'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import GifIcon from '@material-ui/icons/Gif';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import Post from './Post';
 
 function Posts() {
     return (
         <div className='posts__container'>
             <ChannelTitle />
             <div className="posts">
-
+                <Post/>
             </div>
             <div className="post__input">
                 <AddCircleIcon />
