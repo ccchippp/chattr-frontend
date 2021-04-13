@@ -1,3 +1,7 @@
 :root {
     --background: #2f3135;
 }
+
+.app {
+    display: flex;
+}

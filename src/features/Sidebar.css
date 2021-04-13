@@ -5,7 +5,7 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    flex: .25;
+    flex: 0.25;
     height: 100vh;
     background-color: var(--background);
 }

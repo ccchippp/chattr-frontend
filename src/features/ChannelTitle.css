@@ -1,0 +1,13 @@
+.channelTitle{
+    color: gray;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.channelHeader__left > h3 {
+    display: flex;
+    align-items: center;
+    color: whitesmoke;
+}
