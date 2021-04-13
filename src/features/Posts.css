@@ -1,0 +1,45 @@
+.posts__container {
+    display: flex;
+    flex-direction: column;
+    flex: .75;
+    background-color: #363a3f;
+    height: 100vh;
+}
+
+.posts {
+    flex: 1;
+}
+
+.post__input {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    color: lightgray;
+    padding: 15px;
+    /* border-radius: 5px; */
+    margin-top: 10px;
+    border-top: 1px solid gray;
+    background-color: #474b53;
+}
+
+.post__input > form {
+    flex: 1;
+}
+
+.post__input > form > input {
+    padding: 15px;
+    background: transparent;
+    border: none; 
+    outline-width: 0;
+    color: whitesmoke;
+    font-size: large;
+    width: 100%;
+}
+
+.post__inputButton {
+    display: none;
+}
+
+.post__inputIcons > .MuiSvgIcon-root {
+    padding: 5px;
+}
