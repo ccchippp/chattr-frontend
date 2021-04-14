@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './App.css';
-// import Sidebar from './features/Sidebar';
-// import Posts from './features/Posts'
 import Home from './Home';
 import Dashboard from './Dashboard';
-
+import { useSelector } from 'react-redux'
+import { selectUser } from './features/userSlice'
 
 function App() {
+  const user = useSelector(selectUser)
   return (
     <div className="app">
       <BrowserRouter>
@@ -16,9 +16,6 @@ function App() {
           <Route exact path={'/dashboard'} component={Dashboard}/>
         </Switch>
       </BrowserRouter>
-
-      {/* <Sidebar />
-      <Posts /> */}
     </div>
   );
 }
