@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './Registration.css'
 import { Button } from '@material-ui/core'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../features/userSlice'
 
 export default class Registration extends Component {
     constructor(props) {
@@ -20,7 +22,9 @@ export default class Registration extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        console.log('handle submit', event)
+        // console.log('handle submit', event)
+
+        // const user = useSelector(selectUser)
 
         const {
             username,
@@ -39,7 +43,16 @@ export default class Registration extends Component {
         },
             { withCredentials: true }
         ).then(res => {
-            console.log('registration response', res)
+            if (res.data.status === 'created'){
+                this.setState({
+                    user: {
+                        username: res.data.user.username,
+                        email: res.data.user.email,
+                        password: res.data.user.password,
+                        password_confirmation: res.data.user.password_confirmation
+                    }
+                })
+            }
         }).catch(error => {
             console.log('registration error', error)
         })

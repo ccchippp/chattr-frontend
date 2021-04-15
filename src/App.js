@@ -1,25 +1,52 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Home from './Home';
-import Dashboard from './Dashboard';
-import React from 'react'
+// import Home from './Home';
+// import Dashboard from './Dashboard';
+import React, { useEffect } from 'react'
 import './App.css';
-// import { useSelector } from 'react-redux'
-// import { selectUser } from './features/userSlice'
-// import Sidebar from './features/Sidebar';
-// import Posts from './features/Posts';
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUser } from './features/userSlice'
+import Sidebar from './features/Sidebar';
+import Posts from './features/Posts';
+import Registration from './auth/Registration';
+import { login, logout } from './features/userSlice'
 
 function App() {
+  const user = useSelector(selectUser)
+  const dispatch = useDispatch()
+
+useEffect(() => {
+  
+}, [])
 
   return (
     <div className="app">
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={'/'} component={Home}/>
-          <Route exact path={'/dashboard'} component={Dashboard}/>
-        </Switch>
-      </BrowserRouter>
+            {user ? (
+                <>
+                    <Sidebar />
+                    <Posts/>
+                </>
+            ) : (
+                <Registration/>
+            )}
     </div>
   );
+  // return (
+  //   <div className="app">
+  //     <BrowserRouter>
+  //       <Switch>
+  //         <Route exact path={'/'} component={Home}/>
+  //         <Route exact path={'/dashboard'} component={Dashboard}/>
+  //       </Switch>
+  //     </BrowserRouter>
+  //   </div>
+  // );
+  //   this.state = {
+//     username: '',
+//     email: '',
+//     password: '',
+//     password_confirmation: '',
+//     registrationErrors: ''
+// }
 }
 
 export default App;
