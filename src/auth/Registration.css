@@ -1,0 +1,25 @@
+.login {
+    background: var(--background);
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.login > form > button {
+    width: 300px;
+    background-color: gray;
+    color: whitesmoke;
+    font-weight: 800;
+    margin-top: 5px;
+}
+.login > form > button:hover {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.login > form > input {
+    padding: 5px;
+    margin: 10px 0;
+    width: 285px;
+}

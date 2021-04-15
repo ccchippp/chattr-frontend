@@ -8,6 +8,7 @@
 
 .posts {
     flex: 1;
+    /* overflow-y: scroll; ADD TO .chat__messages */
 }
 
 .post__input {
@@ -16,7 +17,6 @@
     justify-content: space-between;
     color: lightgray;
     padding: 15px;
-    /* border-radius: 5px; */
     margin-top: 10px;
     border-top: 1px solid gray;
     background-color: #474b53;

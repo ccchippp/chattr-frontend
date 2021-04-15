@@ -1,13 +1,15 @@
-import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import './App.css';
 import Home from './Home';
 import Dashboard from './Dashboard';
-import { useSelector } from 'react-redux'
-import { selectUser } from './features/userSlice'
+import React from 'react'
+import './App.css';
+// import { useSelector } from 'react-redux'
+// import { selectUser } from './features/userSlice'
+// import Sidebar from './features/Sidebar';
+// import Posts from './features/Posts';
 
 function App() {
-  const user = useSelector(selectUser)
+
   return (
     <div className="app">
       <BrowserRouter>
