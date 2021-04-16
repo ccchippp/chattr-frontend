@@ -1,20 +1,27 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import axios from 'axios'
 import './Registration.css'
 import { Button } from '@material-ui/core'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../features/userSlice'
+import { useSelector, connect } from 'react-redux'
+import { selectUser, login } from '../features/userSlice'
 
-export default class Registration extends Component {
+// const Registration = () => {
+
+//     const [username, setUsername] = useState('')
+//     const [email, setEmail] = useState('')
+//     const [password, setPassword] = useState('')
+//     const [password_confirmation, setPasswordConfirmation] = useState('')
+
+
+class Registration extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             username: '',
             email: '',
             password: '',
             password_confirmation: '',
-            registrationErrors: ''
+            // registrationErrors: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -22,40 +29,35 @@ export default class Registration extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        // console.log('handle submit', event)
+        console.log('handle submit', event)
+
+        this.props.login(this.state)
 
         // const user = useSelector(selectUser)
 
-        const {
-            username,
-            email,
-            password,
-            password_confirmation
-        } = this.state
-
-        axios.post('http://localhost:3000/registrations', {
-            user: {
-                username: username,
-                email: email,
-                password: password,
-                password_confirmation: password_confirmation
-            }
-        },
-            { withCredentials: true }
-        ).then(res => {
-            if (res.data.status === 'created'){
-                this.setState({
-                    user: {
-                        username: res.data.user.username,
-                        email: res.data.user.email,
-                        password: res.data.user.password,
-                        password_confirmation: res.data.user.password_confirmation
-                    }
-                })
-            }
-        }).catch(error => {
-            console.log('registration error', error)
-        })
+        // axios.post('http://localhost:3000/registrations', {
+        //     user: {
+        //         username: username,
+        //         email: email,
+        //         password: password,
+        //         password_confirmation: password_confirmation
+        //     }
+        // },
+        //     { withCredentials: true }
+        // ).then(res => {
+        //     if (res.data.status === 'created'){
+        //         this.state({
+        //             user: {
+        //                 username: username,
+        //                 email: email,
+        //                 password: password,
+        //                 password_confirmation: password_confirmation
+        //             }
+        //         })
+        //     }
+        // }).catch(error => {
+        //     console.log('registration error', error)
+        // })
     }
     
     handleChange(event) {
@@ -65,17 +67,28 @@ export default class Registration extends Component {
     }
 
     render() {
+        
+        const {
+            username,
+            email,
+            password,
+            password_confirmation
+        } = this.state
+
         return (
             <div className='login'>
                 <div className="login__logo">
                     <img src="" alt=""/>
                 </div>
-                <form onSubmit={this.handleSubmit}>
+                <form 
+                onSubmit={this.handleSubmit}
+                >
                     <input 
                         type='username' 
                         name='username' 
                         placeholder='Username'
-                        value={this.state.username}
+                        value={username}
+                        // onChange={(e) => setUsername(e.target.value)}
                         onChange={this.handleChange}
                         required>
                     </input>
@@ -84,7 +97,8 @@ export default class Registration extends Component {
                         type='email' 
                         name='email' 
                         placeholder='Email'
-                        value={this.state.email}
+                        value={email}
+                        // onChange={(e) => setEmail(e.target.value)}
                         onChange={this.handleChange}
                         required>
                     </input>
@@ -93,7 +107,8 @@ export default class Registration extends Component {
                         type='password' 
                         name='password' 
                         placeholder='Password'
-                        value={this.state.password}
+                        value={password}
+                        // onChange={(e) => setPassword(e.target.value)}
                         onChange={this.handleChange}
                         required>
                     </input>
@@ -102,14 +117,23 @@ export default class Registration extends Component {
                         type='password' 
                         name='password_confirmation' 
                         placeholder='Password Confirmation'
-                        value={this.state.password_confirmation}
+                        value={password_confirmation}
                         onChange={this.handleChange}
+                        // onChange={(e) => setPasswordConfirmation(e.target.value)}
                         required>
                     </input>
                     <br/>
-                    <Button type='submit'>Register</Button>
+                    <Button 
+                    type='submit'
+                    >Register</Button>
                 </form>
             </div>
         )
     }
 }
+
+LoginFom.propTypes ={
+    login: React.PropTypes.func.isRequired
+}
+
+export default  connect(null, {login})(Registration)

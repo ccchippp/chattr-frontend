@@ -14,9 +14,20 @@ function App() {
   const user = useSelector(selectUser)
   const dispatch = useDispatch()
 
-useEffect(() => {
+// useEffect(() => {
   
-}, [])
+//   if (user) {
+//     //user is logged in
+//     dispatch(login({
+//       username: currentUser.username,
+//       email: currentUser.email,
+//       password: currentUser.password,
+//       password_confirmation: currentUser.password_confirmation
+//     }))
+//   } else {
+//     // user is logged out
+//   }
+// }, [])
 
   return (
     <div className="app">
