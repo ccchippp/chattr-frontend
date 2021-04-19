@@ -54,6 +54,7 @@ export default class Registration extends Component {
     render() {
         return (
             <div className='login'>
+                <h1>Log in</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input 
                         type='username' 
@@ -63,6 +64,7 @@ export default class Registration extends Component {
                         onChange={this.handleChange}
                         required>
                     </input>
+                    <br/>
                     <input 
                         type='email' 
                         name='email' 
@@ -71,6 +73,7 @@ export default class Registration extends Component {
                         onChange={this.handleChange}
                         required>
                     </input>
+                    <br/>
                     <input 
                         type='password' 
                         name='password' 
@@ -79,6 +82,7 @@ export default class Registration extends Component {
                         onChange={this.handleChange}
                         required>
                     </input>
+                    <br/>
                     <input 
                         type='password' 
                         name='password_confirmation' 
@@ -87,6 +91,7 @@ export default class Registration extends Component {
                         onChange={this.handleChange}
                         required>
                     </input>
+                    <br/>
                     <Button type='submit'>Register</Button>
                 </form>
             </div>

@@ -28,3 +28,7 @@
     object-fit: contain;
     height: 150px;
 }
+
+h1 {
+    color: whitesmoke;
+}
