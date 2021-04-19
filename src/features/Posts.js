@@ -6,12 +6,12 @@ import GifIcon from '@material-ui/icons/Gif';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import Post from './Post';
 
-function Posts() {
+const Posts = (props) => {
     return (
         <div className='posts__container'>
-            <ChannelTitle />
+            <ChannelTitle props={props}/>
             <div className="posts">
-                <Post/>
+                <Post props={props}/>
             </div>
             <div className="post__input">
                 <AddCircleIcon />

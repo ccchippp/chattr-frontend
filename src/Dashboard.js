@@ -3,11 +3,13 @@ import Sidebar from './features/Sidebar'
 import Posts from './features/Posts'
 import './Dashboard.css'
 
-const Dashboard = (props) => {
+const Dashboard = props => {
+    // console.log(props)
     return (
         <div className='dashboard'>
-            <Sidebar />
-            <Posts />
+             {/* <h1>Status: {props.loggedInStatus}</h1> */}
+            <Sidebar props={props}/>
+            <Posts props={props}/>
         </div>
     )
 }

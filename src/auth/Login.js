@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import './Registration.css'
+import './Login.css'
 import { Button } from '@material-ui/core'
 
-export default class Registration extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props)
 
@@ -11,40 +11,37 @@ export default class Registration extends Component {
             username: '',
             email: '',
             password: '',
-            password_confirmation: '',
-            registrationErrors: ''
+            password_confirmation: ''
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleSubmit(event) {
         event.preventDefault()
         // console.log('handle submit', event)
-
         const {
             username,
             email,
             password,
-            password_confirmation
         } = this.state
 
-        axios.post('http://localhost:3000/registrations', {
+        axios.post('http://localhost:3000/sessions', {
             user: {
                 username: username,
                 email: email,
                 password: password,
-                password_confirmation: password_confirmation
+                password_confirmation: password
             }
         },
             { withCredentials: true }
         ).then(res => {
-            console.log('registration response', res)
-            if (res.data.status === 'created'){
+            console.log('login response', res)
+            if (res.data.logged_in){
             this.props.handleSuccessfulAuth(res.data)
         }
         }).catch(error => {
-            // console.log('registration error', error)
+            console.log('login error', error)
         })
     }
     
@@ -56,8 +53,8 @@ export default class Registration extends Component {
 
     render() {
         return (
-            <div className='registration'>
-                <h1>Sign up</h1>
+            <div className='login'>
+                <h1>Log in</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input 
                         type='username' 
@@ -86,16 +83,7 @@ export default class Registration extends Component {
                         required>
                     </input>
                     <br/>
-                    <input 
-                        type='password' 
-                        name='password_confirmation' 
-                        placeholder='Password Confirmation'
-                        value={this.state.password_confirmation}
-                        onChange={this.handleChange}
-                        required>
-                    </input>
-                    <br/>
-                    <Button type='submit'>Register</Button>
+                    <Button type='submit'>Login</Button>
                 </form>
             </div>
         )

@@ -2,6 +2,7 @@ import React from 'react'
 import './SidebarChannel.css'
 
 function SidebarChannel({ id, channel }) {
+
     return (
         <div className='sidebarChannel'>
             <h4><span className="sidebarChannel__hash">#</span>Chip's Channel</h4>
