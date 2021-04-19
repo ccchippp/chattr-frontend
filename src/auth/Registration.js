@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './Registration.css'
+import { Button } from '@material-ui/core'
 
 export default class Registration extends Component {
     constructor(props) {
@@ -51,7 +53,7 @@ export default class Registration extends Component {
 
     render() {
         return (
-            <div>
+            <div className='login'>
                 <form onSubmit={this.handleSubmit}>
                     <input 
                         type='username' 
@@ -85,7 +87,7 @@ export default class Registration extends Component {
                         onChange={this.handleChange}
                         required>
                     </input>
-                    <button type='submit'>Register</button>
+                    <Button type='submit'>Register</Button>
                 </form>
             </div>
         )
