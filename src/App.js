@@ -22,24 +22,24 @@ export default class App extends Component {
         console.log('logged in?', res.data)
         if (
           res.data.logged_in &&
-          this.state.loggedInStatus === "NOT_LOGGED_IN"
+          this.state.loggedInStatus === 'NOT_LOGGED_IN'
         ) {
           this.setState({
-            loggedInStatus: "LOGGED_IN",
+            loggedInStatus: 'LOGGED_IN',
             user: res.data.user
           });
         } else if (
           !res.data.logged_in &
-          (this.state.loggedInStatus === "LOGGED_IN")
+          (this.state.loggedInStatus === 'LOGGED_IN')
         ) {
           this.setState({
-            loggedInStatus: "NOT_LOGGED_IN",
+            loggedInStatus: 'NOT_LOGGED_IN',
             user: {}
           });
         }
       })
       .catch(error => {
-        console.log("check login error", error);
+        console.log("check error", error);
       });
   }
 

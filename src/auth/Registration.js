@@ -20,7 +20,7 @@ export default class Registration extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        // console.log('handle submit', event)
+        console.log('handle submit', event)
 
         const {
             username,

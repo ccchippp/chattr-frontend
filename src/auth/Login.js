@@ -10,8 +10,7 @@ export default class Login extends Component {
         this.state = {
             username: '',
             email: '',
-            password: '',
-            password_confirmation: ''
+            password: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -30,16 +29,15 @@ export default class Login extends Component {
             user: {
                 username: username,
                 email: email,
-                password: password,
-                password_confirmation: password
+                password: password
             }
         },
             { withCredentials: true }
         ).then(res => {
             console.log('login response', res)
-            if (res.data.logged_in){
+            if (res.data.logged_in) {
             this.props.handleSuccessfulAuth(res.data)
-        }
+            }
         }).catch(error => {
             console.log('login error', error)
         })

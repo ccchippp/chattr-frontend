@@ -8,6 +8,7 @@ import { Avatar } from '@material-ui/core';
 
 const Sidebar = (props) => {
   const username = props.props.user.username
+  const email = props.props.user.email
     return (
     <div className='sidebar'>
       <div className='sidebar__top'>
@@ -24,13 +25,15 @@ const Sidebar = (props) => {
         </div>
         <div className="sidebar__channelsList">
             <SidebarChannel props={props}/>
+            <SidebarChannel props={props}/>
+            <SidebarChannel props={props}/>
         </div>
       </div>
       <div className="sidebar__profile">
           <Avatar src='https://avatars.githubusercontent.com/u/63663532?s=400&u=9c07edd7047c41311049593e22f1cace173c8fb0&v=4'/>
           <div className="sidebar__profileInfo">
               <h3>{username}</h3>
-              <p>Chip Lempke</p>
+              <p>{email}</p>
           </div>
       </div>
     </div>
