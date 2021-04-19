@@ -3,7 +3,7 @@ import Sidebar from './features/Sidebar'
 import Posts from './features/Posts'
 import './Dashboard.css'
 
-function Dashboard() {
+const Dashboard = (props) => {
     return (
         <div className='dashboard'>
             <Sidebar />
