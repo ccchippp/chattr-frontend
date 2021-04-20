@@ -50,7 +50,7 @@
     align-items: center;
     color: gray;
     background-color: var(--background);
-    padding: 10px;
+    padding: 0px 10px;
     border-top: 1px solid gray;
 }
 
@@ -61,4 +61,8 @@
 
 .sidebar__profileInfo > h3{
     color: whitesmoke;
+}
+
+.sidebar__avatar:hover {
+    cursor: pointer;
 }

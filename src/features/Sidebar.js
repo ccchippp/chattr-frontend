@@ -37,7 +37,7 @@ function Sidebar() {
     return (
     <div className='sidebar'>
       <div className='sidebar__top'>
-        <h3>Chip</h3>
+        <h3>Chattr</h3>
         <ExpandMoreIcon/>
       </div>
       <div className="sidebar__channels">
@@ -61,6 +61,7 @@ function Sidebar() {
       </div>
       <div className="sidebar__profile">
           <Avatar 
+          className='sidebar__avatar'
           src={user.photo}
           onClick={()=> auth.signOut()}/>
           <div className="sidebar__profileInfo">

@@ -45,6 +45,14 @@ function Posts() {
             setInput('')
         }
 
+    const deleteMessage = e => {
+
+        db.collection('channels')
+            .doc(channelId)
+            .collection('messages')
+            .remove()
+        }
+
     return (
         <div className='posts__container'>
             <ChannelTitle channelName={channelName} />
