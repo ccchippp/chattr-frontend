@@ -6,9 +6,28 @@ import Sidebar from './features/Sidebar';
 import Posts from './features/Posts';
 import Registration from './auth/Registration';
 import { login, logout } from './features/userSlice'
+import { auth } from './firebase';
 
 function App() {
   const user = useSelector(selectUser)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if(authUser) {
+        // console.log('user is', authUser)
+        dispatch(login({
+          uid: authUser.uid,
+          photo: authUser.photoURL,
+          email: authUser.email,
+          displayName: authUser.displayName,
+        }))
+      } else {
+        //logged out
+        dispatch(logout())
+      }
+    })
+  },[])
 
   return (
     <div className='app'>
