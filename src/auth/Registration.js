@@ -101,3 +101,4 @@ export default class Registration extends Component {
         )
     }
 }
+ 
