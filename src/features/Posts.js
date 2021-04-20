@@ -20,39 +20,45 @@ function Posts() {
     const channelName = useSelector(selectChannelName)
 
     const [input, setInput] = useState('')
-    const [messages, setMessages] = useState([])
+    // const [messages, setMessages] = useState([])
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         if (channelId) {
             db.collection('channels')
                 .doc(channelId)
-                .collection('messages')
+                // .collection('messages')
+                .collection('posts')
                 .orderBy('timestamp', 'asc')
                 .onSnapshot((snapshot) =>
-                    setMessages(snapshot.docs.map((doc) => doc.data()))
+                    // setMessages(snapshot.docs.map((doc) => doc.data()))
+                    setPosts(snapshot.docs.map((doc) => doc.data()))
             )
         }
         }, [channelId])
 
-    const sendMessage = e => {
+    // const sendMessage = e => {
+    const sendPost = e => {
         e.preventDefault()
 
         db.collection('channels')
             .doc(channelId)
-            .collection('messages')
+            // .collection('messages')
+            .collection('posts')
             .add({
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                message: input,
+                // message: input,
+                post: input,
                 user: user,
             })
             setInput('')
         }
 
-    const deleteMessage = e => {
+    const deletePost = e => {
 
         db.collection('channels')
             .doc(channelId)
-            .collection('messages')
+            .collection('posts')
             .remove()
         }
 
@@ -60,11 +66,11 @@ function Posts() {
         <div className='posts__container'>
             <ChannelTitle channelName={channelName} />
                 <div className="posts">
-                    {messages.map((message) => (
+                    {posts.map((post) => (
                     <Post
-                        timestamp={message.timestamp}
-                        message={message.message}
-                        user={message.user}
+                        timestamp={post.timestamp}
+                        post={post.post}
+                        user={post.user}
                     />
                     ))}
                 </div>
@@ -73,14 +79,14 @@ function Posts() {
                 <form>
                     <input 
                         type="text" 
-                        placeholder={`Message #${channelName}`}
+                        placeholder={`Post to #${channelName}`}
                         value={input}
                         disabled={!channelId}
                         onChange={e => setInput(e.target.value)}/>
                     <button 
                         type='submit'
                         className='post__inputButton'
-                        onClick={sendMessage}>
+                        onClick={sendPost}>
                         Send</button>
                 </form>
                 <div className="post__inputIcons">

@@ -2,7 +2,7 @@ import { Avatar } from '@material-ui/core'
 import React from 'react'
 import './Post.css'
 
-function Post({ user, message, timestamp }) {
+function Post({ user, post, timestamp }) {
     return (
         <div className='post'>
             <Avatar src={user.photo}/>
@@ -13,7 +13,7 @@ function Post({ user, message, timestamp }) {
                     </span>
                 </h4>
                 <p className='post__text'>
-                    {message}
+                    {post}
                 </p>
             </div>
         </div>
