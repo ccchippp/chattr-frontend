@@ -2,16 +2,18 @@ import { Avatar } from '@material-ui/core'
 import React from 'react'
 import './Post.css'
 
-function Post() {
+function Post({ user, message, timestamp }) {
     return (
         <div className='post'>
-            <Avatar/>
+            <Avatar src={user.photo}/>
             <div className="post__content">
-                <h4>ccchippp
-                    <span className='post__timestamp'>timestamp</span>
+                <h4>{user.displayName}
+                    <span className='post__timestamp'>
+                        {new Date(timestamp?.toDate()).toUTCString()}
+                    </span>
                 </h4>
                 <p className='post__text'>
-                    This is the body of the post
+                    {message}
                 </p>
             </div>
             

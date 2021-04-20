@@ -1,11 +1,11 @@
 import React from 'react'
 import './ChannelTitle.css'
 
-function ChannelTitle() {
+function ChannelTitle({ channelName }) {
     return (
         <div className='channelTitle'>
             <div className="channelHeader__left">
-            <h3><span className="channelHeader__hash">#</span>Channel Title</h3>
+            <h3><span className="channelHeader__hash">#</span>{channelName}</h3>
 
             </div>
             <div className="channelHeader__right">
