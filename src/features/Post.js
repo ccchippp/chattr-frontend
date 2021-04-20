@@ -16,7 +16,6 @@ function Post({ user, message, timestamp }) {
                     {message}
                 </p>
             </div>
-            
         </div>
     )
 }

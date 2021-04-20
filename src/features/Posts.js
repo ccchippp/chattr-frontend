@@ -5,11 +5,14 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import GifIcon from '@material-ui/icons/Gif';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import Post from './Post';
+import Emoji from './Emoji';
 import { useSelector } from 'react-redux';
 import { selectChannelId, selectChannelName } from './appSlice';
 import { selectUser } from './userSlice';
 import db from '../firebase';
 import firebase from 'firebase'
+import Chat from './ChatBar'
+
 
 function Posts() {
     const user = useSelector(selectUser)
@@ -56,15 +59,15 @@ function Posts() {
     return (
         <div className='posts__container'>
             <ChannelTitle channelName={channelName} />
-            <div className="posts">
-                {messages.map((message) => (
-                <Post
-                    timestamp={message.timestamp}
-                    message={message.message}
-                    user={message.user}
-                />
-                ))}
-            </div>
+                <div className="posts">
+                    {messages.map((message) => (
+                    <Post
+                        timestamp={message.timestamp}
+                        message={message.message}
+                        user={message.user}
+                    />
+                    ))}
+                </div>
             <div className="post__input">
                 <AddCircleIcon />
                 <form>
@@ -83,6 +86,7 @@ function Posts() {
                 <div className="post__inputIcons">
                     <GifIcon />
                     <EmojiEmotionsIcon />
+                    {/* <Emoji /> */}
                 </div>
             </div>
         </div>

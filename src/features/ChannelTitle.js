@@ -6,7 +6,6 @@ function ChannelTitle({ channelName }) {
         <div className='channelTitle'>
             <div className="channelHeader__left">
             <h3><span className="channelHeader__hash">#</span>{channelName}</h3>
-
             </div>
             <div className="channelHeader__right">
                 
