@@ -1,6 +1,3 @@
-// import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// import Home from './Home';
-// import Dashboard from './Dashboard';
 import React, { useEffect } from 'react'
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,7 +11,7 @@ function App() {
   const user = useSelector(selectUser)
 
   return (
-    <div className="app">
+    <div className='app'>
             {user ? (
                 <>
                     <Sidebar />
