@@ -7,6 +7,8 @@ import { selectUser } from './userSlice'
 import { selectChatId, selectChatName } from './chatSlice';
 import db from '../firebase'
 import firebase from 'firebase'
+import ChatMessage from './ChatMessage'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 
 
@@ -15,38 +17,38 @@ function ChatBar() {
     const chatId = useSelector(selectChatId)
     const chatName = useSelector(selectChatName)
 
-    const [text, setText] = useState('')
-    const [messages, setMessages] = useState([])
+    // const [text, setText] = useState('')
+    // const [messages, setMessages] = useState([])
 // 
     const messagesRef = db.collection('messages')
     const query = messagesRef.orderBy('createdAt').limit(25)
-    const [messages] = useCollectionData(query, idField: 'id')
+    const [messages] = useCollectionData(query, {idField: 'id'})
 // 
-    useEffect(() => {
-        if (chatId) {
-            db.collection('chats')
-                .doc(chatId)
-                .collection('messages')
-                .orderBy('timestamp', 'asc')
-                .onSnapshot((snapshot) =>
-                    setMessages(snapshot.docs.map((doc) => doc.data()))
-            )
-        }
-        }, [chatId])
+    // useEffect(() => {
+    //     if (chatId) {
+    //         db.collection('chats')
+    //             .doc(chatId)
+    //             .collection('messages')
+    //             .orderBy('timestamp', 'asc')
+    //             .onSnapshot((snapshot) =>
+    //                 setMessages(snapshot.docs.map((doc) => doc.data()))
+    //         )
+    //     }
+    //     }, [chatId])
 
-    const sendMessage = e => {
-        e.preventDefault()
+    // const sendMessage = e => {
+    //     e.preventDefault()
 
-        db.collection('chats')
-            .doc(chatId)
-            .collection('messages')
-            .add({
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                message: text,
-                user: user,
-            })
-            setText('')
-        }
+    //     db.collection('chats')
+    //         .doc(chatId)
+    //         .collection('messages')
+    //         .add({
+    //             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    //             message: text,
+    //             user: user,
+    //         })
+    //         setText('')
+    //     }
 
 
     return (
@@ -56,7 +58,8 @@ function ChatBar() {
                 {messages && messages.map(msg => 
                 <ChatMessage 
                     key={msg.id} 
-                    message={msg})}
+                    message={msg}/>
+                    )}
                 {/* {messages.map((message) => (
                 <Chat
                     timestamp={message.timestamp}
@@ -66,7 +69,7 @@ function ChatBar() {
                 ))} */}
             </div>
             <div className="chat__input">
-                <form>
+                {/* <form>
                     <input 
                         type="text" 
                         placeholder={`Message`}
@@ -77,10 +80,10 @@ function ChatBar() {
                     <button 
                         type='submit'
                         className='chat__inputButton'
-                        onClick={sendMessage}
+                        // onClick={sendMessage}
                         >
                         Send</button>
-                </form>
+                </form> */}
             </div>
         </div>
     )
