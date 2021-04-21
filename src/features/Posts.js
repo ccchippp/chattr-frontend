@@ -5,13 +5,11 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import GifIcon from '@material-ui/icons/Gif';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import Post from './Post';
-import Emoji from './Emoji';
 import { useSelector } from 'react-redux';
 import { selectChannelId, selectChannelName } from './appSlice';
 import { selectUser } from './userSlice';
 import db from '../firebase';
 import firebase from 'firebase'
-import Chat from './ChatBar'
 
 
 function Posts() {
@@ -20,47 +18,41 @@ function Posts() {
     const channelName = useSelector(selectChannelName)
 
     const [input, setInput] = useState('')
-    // const [messages, setMessages] = useState([])
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
         if (channelId) {
             db.collection('channels')
                 .doc(channelId)
-                // .collection('messages')
                 .collection('posts')
                 .orderBy('timestamp', 'asc')
                 .onSnapshot((snapshot) =>
-                    // setMessages(snapshot.docs.map((doc) => doc.data()))
                     setPosts(snapshot.docs.map((doc) => doc.data()))
             )
         }
         }, [channelId])
 
-    // const sendMessage = e => {
     const sendPost = e => {
         e.preventDefault()
 
         db.collection('channels')
             .doc(channelId)
-            // .collection('messages')
             .collection('posts')
             .add({
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                // message: input,
                 post: input,
                 user: user,
             })
             setInput('')
         }
 
-    const deletePost = e => {
+    // const deletePost = e => {
 
-        db.collection('channels')
-            .doc(channelId)
-            .collection('posts')
-            .remove()
-        }
+    //     db.collection('channels')
+    //         .doc(channelId)
+    //         .collection('posts')
+    //         .remove()
+    //     }
 
     return (
         <div className='posts__container'>
