@@ -15,11 +15,13 @@ function Registration() {
     return (
         <div className='login'>
             <div className="login__logo">
-                <img src="" alt=""/>
+                <h1>Chattr</h1>
+                {/* <img src="https://www.pngkit.com/png/detail/15-152120_transparent-teeth-chatter-teeth-chattering-clip-art.png" alt=""/> */}
             </div>
-            <Button 
+            <button 
+                className='login_button'
                 onClick={signIn}
-                >Sign In</Button>
+                >SIGN IN</button>
         </div>
     )
 }

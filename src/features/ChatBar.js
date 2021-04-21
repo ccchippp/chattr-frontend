@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './ChatBar.css'
 import Chat from './Chat'
 import ChatHeader from './ChatHeader'
 import { useSelector } from 'react-redux'
 import { selectUser } from './userSlice'
 import { selectChatId, selectChatName } from './chatSlice';
-import db from '../firebase'
+import db, { auth } from '../firebase'
 import firebase from 'firebase'
 import ChatMessage from './ChatMessage'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
@@ -17,38 +17,32 @@ function ChatBar() {
     const chatId = useSelector(selectChatId)
     const chatName = useSelector(selectChatName)
 
-    // const [text, setText] = useState('')
+    const [formValue, setFormValue] = useState('')
     // const [messages, setMessages] = useState([])
 // 
     const messagesRef = db.collection('messages')
     const query = messagesRef.orderBy('createdAt').limit(25)
     const [messages] = useCollectionData(query, {idField: 'id'})
+    const dummy = useRef()
 // 
-    // useEffect(() => {
-    //     if (chatId) {
-    //         db.collection('chats')
-    //             .doc(chatId)
-    //             .collection('messages')
-    //             .orderBy('timestamp', 'asc')
-    //             .onSnapshot((snapshot) =>
-    //                 setMessages(snapshot.docs.map((doc) => doc.data()))
-    //         )
-    //     }
-    //     }, [chatId])
 
-    // const sendMessage = e => {
-    //     e.preventDefault()
+    const sendMessage = async(e) => {
+        e.preventDefault()
+        console.log('user data', user)
 
-    //     db.collection('chats')
-    //         .doc(chatId)
-    //         .collection('messages')
-    //         .add({
-    //             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    //             message: text,
-    //             user: user,
-    //         })
-    //         setText('')
-    //     }
+        // const { uid, photoUrl } = auth.user
+        
+        await messagesRef.add({
+            text:formValue,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            uid: user.uid,
+            photoUrl: user.photo
+        })
+        setFormValue('')
+        dummy.current.scrollIntoView({
+            behavior: 'smooth'
+        })
+        }
 
 
     return (
@@ -60,22 +54,16 @@ function ChatBar() {
                     key={msg.id} 
                     message={msg}/>
                     )}
-                {/* {messages.map((message) => (
-                <Chat
-                    timestamp={message.timestamp}
-                    message={message.message}
-                    user={message.user}
-                />
-                ))} */}
             </div>
+            <div ref={dummy}></div>
             <div className="chat__input">
-                {/* <form>
+                <form onSubmit={sendMessage}>
                     <input 
                         type="text" 
                         placeholder={`Message`}
-                        value={text}
+                        value={formValue}
+                        onChange={e => setFormValue(e.target.value)}
                         // disabled={!friendId}
-                        onChange={e => setText(e.target.value)}
                         />
                     <button 
                         type='submit'
@@ -83,7 +71,7 @@ function ChatBar() {
                         // onClick={sendMessage}
                         >
                         Send</button>
-                </form> */}
+                </form>
             </div>
         </div>
     )
