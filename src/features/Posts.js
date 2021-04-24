@@ -27,7 +27,7 @@ function Posts() {
                 .collection('posts')
                 .orderBy('timestamp', 'asc')
                 .onSnapshot((snapshot) =>
-                    setPosts(snapshot.docs.map((doc) => doc.data()))
+                    setPosts(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})))
             )
         }
         }, [channelId])
@@ -46,14 +46,6 @@ function Posts() {
             setInput('')
         }
 
-    // const deletePost = e => {
-
-    //     db.collection('channels')
-    //         .doc(channelId)
-    //         .collection('posts')
-    //         .remove()
-    //     }
-
     return (
         <div className='posts__container'>
             <ChannelTitle channelName={channelName} />
@@ -63,6 +55,7 @@ function Posts() {
                         timestamp={post.timestamp}
                         post={post.post}
                         user={post.user}
+                        id={post.id}
                     />
                     ))}
                 </div>
