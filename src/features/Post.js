@@ -9,15 +9,6 @@ import { selectChannelId } from './appSlice';
 function Post({ user, post, timestamp }) {
     const channelId = useSelector(selectChannelId)
 
-    // const handleAddChat = () => {
-    //     // const chatName = prompt('Enter a new chat name')
-    //     const chatName = user.displayName
-    //     if (chatName) {
-    //       db.collection('chats').add({
-    //         chatName: user.displayName,
-    //       })
-    //     }
-    //   }
     
     const handleDel = () => {
         db.collection('channels')
