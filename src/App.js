@@ -7,7 +7,7 @@ import Posts from './features/Posts';
 import Registration from './auth/Registration';
 import { login, logout } from './features/userSlice'
 import { auth } from './firebase';
-import ChatBar from './features/ChatBar'
+// import ChatBar from './features/ChatBar'
 
 function App() {
   const user = useSelector(selectUser)

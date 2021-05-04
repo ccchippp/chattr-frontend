@@ -10,7 +10,7 @@ function Post({ user, post, timestamp }) {
     const channelId = useSelector(selectChannelId)
 
     
-    const handleDel = () => {
+    const handleDel = (post) => {
         // db.collection('channels')
         // .doc(channelId)
         db.collection('posts')

@@ -62,6 +62,7 @@ function Posts() {
                         post={post.post}
                         user={post.user}
                         id={post.id}
+                        key={post.id}
                     />
                     ))}
                 </div>
