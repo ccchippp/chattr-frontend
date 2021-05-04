@@ -36,7 +36,7 @@ function App() {
                 <>
                     <Sidebar/>
                     <Posts/>
-                    <ChatBar/>
+                    {/* <ChatBar/> */}
                 </>
             ) : (
                 <Registration/>

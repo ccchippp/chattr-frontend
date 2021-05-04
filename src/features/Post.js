@@ -11,11 +11,16 @@ function Post({ user, post, timestamp }) {
 
     
     const handleDel = () => {
-        db.collection('channels')
-        .doc(channelId)
-        .collection('posts')
-        .doc(post.id).delete()
+        // db.collection('channels')
+        // .doc(channelId)
+        db.collection('posts')
+        .doc(post.id).delete().then(() => {
+            console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
     }
+
 
     return (
         <div className='post'>
