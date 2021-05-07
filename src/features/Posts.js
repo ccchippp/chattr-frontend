@@ -82,8 +82,8 @@ function Posts() {
                         Send</button>
                 </form>
                 <div className="post__inputIcons">
-                    <GifIcon />
-                    <EmojiEmotionsIcon />
+                    {/* <GifIcon />
+                    <EmojiEmotionsIcon /> */}
                     {/* <Emoji /> */}
                 </div>
             </div>

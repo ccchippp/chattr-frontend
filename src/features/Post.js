@@ -5,16 +5,17 @@ import './Post.css'
 import ClearIcon from '@material-ui/icons/Clear';
 import { useSelector } from 'react-redux';
 import { selectChannelId } from './appSlice';
+import axios from 'axios';
 
-function Post({ user, post, timestamp }) {
+function Post({ user, post, timestamp, id: postId }) {
     const channelId = useSelector(selectChannelId)
 
-    
-    const handleDel = (post) => {
-        // db.collection('channels')
-        // .doc(channelId)
-        db.collection('posts')
-        .doc(post.id).delete().then(() => {
+
+    const handleDel = () => {
+        db.collection('channels')
+        .doc(channelId)
+        .collection('posts')
+        .doc(postId).delete().then(() => {
             console.log("Document successfully deleted!");
         }).catch((error) => {
             console.error("Error removing document: ", error);
