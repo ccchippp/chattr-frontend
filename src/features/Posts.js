@@ -46,12 +46,6 @@ function Posts() {
             setInput('')
         }
 
-    // const deleteButton = user === post.user ? (
-    //     <DeletePost
-    //     post={post}
-    //     />
-    // ) : null
-
     return (
         <div className='posts__container'>
             <ChannelTitle channelName={channelName} />
