@@ -1,0 +1,64 @@
+.ccc {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    color: whitesmoke;
+}
+
+.c__content {
+    margin-left: 0px;
+}
+
+.c__timestamp {
+    color:gray;
+    margin-left: 20px;
+    font-size: x-small;
+}
+
+.c__text {
+    padding-top: 5px;
+}
+
+ul, li {
+    text-align: left;
+    list-style: none;
+  }
+  
+.chatMessageContent {
+    max-width: 500px;
+    margin-bottom: 10px;
+    line-height: 24px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: relative;
+    color: white;
+    text-align: center;
+  }
+  
+  .message {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .sent {
+    flex-direction: row-reverse;
+  }
+  
+  .sent p {
+    color: white;
+    /* background: #0b93f6; */
+    background: none;
+    align-self: flex-end;
+  }
+  .received p {
+    background: #e5e5ea;
+    color: black;
+  }
+  
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 2px 5px;
+  }

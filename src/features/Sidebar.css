@@ -62,3 +62,7 @@
 .sidebar__profileInfo > h3{
     color: whitesmoke;
 }
+
+.sidebar__avatar:hover {
+    cursor: pointer;
+}

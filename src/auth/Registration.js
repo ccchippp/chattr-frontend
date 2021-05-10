@@ -1,56 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
+import { auth, provider } from '../firebase'
 import axios from 'axios'
 import './Registration.css'
 import { Button } from '@material-ui/core'
+<<<<<<< HEAD
+=======
+import { useSelector, connect } from 'react-redux'
+import { selectUser, login } from '../features/userSlice'
+>>>>>>> messenger
 
-export default class Registration extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            username: '',
-            email: '',
-            password: '',
-            password_confirmation: '',
-            registrationErrors: ''
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+function Registration() {
+    const signIn = () => {
+        auth.signInWithPopup(provider)
+        .catch(error => alert(error.message))
     }
 
-    handleSubmit(event) {
-        event.preventDefault()
-        console.log('handle submit', event)
-
-        const {
-            username,
-            email,
-            password,
-            password_confirmation
-        } = this.state
-
-        axios.post('http://localhost:3000/registrations', {
-            user: {
-                username: username,
-                email: email,
-                password: password,
-                password_confirmation: password_confirmation
-            }
-        },
-            { withCredentials: true }
-        ).then(res => {
-            console.log('registration response', res)
-        }).catch(error => {
-            console.log('registration error', error)
-        })
-    }
-    
-    handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-
+<<<<<<< HEAD
     render() {
         return (
             <div className='login'>
@@ -89,7 +54,20 @@ export default class Registration extends Component {
                     </input>
                     <Button type='submit'>Register</Button>
                 </form>
+=======
+    return (
+        <div className='login'>
+            <div className="login__logo">
+                <h1>Chattr</h1>
+                {/* <img src="https://www.pngkit.com/png/detail/15-152120_transparent-teeth-chatter-teeth-chattering-clip-art.png" alt=""/> */}
+>>>>>>> messenger
             </div>
-        )
-    }
+            <button 
+                className='login_button'
+                onClick={signIn}
+                >SIGN IN</button>
+        </div>
+    )
 }
+
+export default Registration
