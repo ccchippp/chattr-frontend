@@ -7,7 +7,6 @@ import Posts from './features/Posts';
 import Registration from './auth/Registration';
 import { login, logout } from './features/userSlice'
 import { auth } from './firebase';
-// import ChatBar from './features/ChatBar'
 
 function App() {
   const user = useSelector(selectUser)
@@ -16,7 +15,6 @@ function App() {
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if(authUser) {
-        // console.log('user is', authUser)
         dispatch(login({
           uid: authUser.uid,
           photo: authUser.photoURL,
@@ -24,7 +22,6 @@ function App() {
           displayName: authUser.displayName,
         }))
       } else {
-        //logged out
         dispatch(logout())
       }
     })
